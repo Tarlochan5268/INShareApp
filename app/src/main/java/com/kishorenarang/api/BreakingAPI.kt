@@ -1,6 +1,8 @@
 package com.kishorenarang.api
 
 import android.util.Log
+import okhttp3.*
+import java.io.IOException
 
 class BreakingAPI
 {
@@ -42,7 +44,7 @@ class BreakingAPI
             val request = Request.Builder().url(url).build()
             Log.d("KISHORE","INSIDE THREAD")
 
-            client.newCall(request).enqueue(object : Callback{
+            client.newCall(request).enqueue(object : Callback {
 
                 override fun onFailure(call: Call, e: IOException) {
                     Log.d("KISHORE","Failed");
