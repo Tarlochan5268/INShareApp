@@ -33,6 +33,31 @@ class BreakingAPI
 
     }
 
+    suspend fun callToApi(url:String) : String
+    {
+        var returner = ""
+
+        val client = OkHttpClient()
+        val request = Request.Builder().build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e(TAG, "onFailure: Failed due to a reason "+e.toString() )
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+
+               returner = response.body!!.string()
+            }
+
+        })
+
+        return returner
+    }
+
+
+
+
+
     fun call(url:String):String
     {
         var returner = "";
