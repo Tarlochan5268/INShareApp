@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#FA881D</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorTextIcon">#8890A6</color>
+
+    <!--
+
+        Resources by Kishore Narang www.kishorenarang.com
+    -->
+
+    <color name="colorChip">#E5E5E5</color>
 </resources>
