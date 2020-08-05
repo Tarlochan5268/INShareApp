@@ -1,12 +1,16 @@
 package com.tarlochan.inshareapp
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +19,7 @@ import com.google.android.material.chip.ChipGroup
 import com.kishorenarang.adapters.NewsAdapter
 import com.kishorenarang.api.NewsAPIService
 import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.news_card.*
 import okhttp3.ResponseBody
 import org.jetbrains.anko.doAsync
 import retrofit2.Call
@@ -73,6 +78,7 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
         super.onViewCreated(view, savedInstanceState)
 
 
+//        chipGroup!!.isSingleSelection =true
         var id:Int = 0
         for(category in categories)
         {
@@ -84,11 +90,13 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
 
             c.setOnClickListener(this);
             filter_chips.addView(c)
-            val newsData = NewsAPIService.create()
-            newsData.getGeneralNews().enqueue(this)
 
         }
 
+
+
+
+        NewsAPIService.create().getGeneralNews().enqueue(this)
 
 
     }
@@ -115,6 +123,8 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
 
 
 
+    var oneSelected = false
+
 
     override fun onClick(p0: View?) {
 
@@ -122,25 +132,47 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
         val chipClicked = p0 as Chip
 
 
-        if(chipClicked.isSelected)
-        {
-            chipClicked.chipIcon = null
-            chipClicked.isSelected = false
-chipClicked.chipBackgroundColor = getColorStateList(requireContext(), R.color.colorChip)
-            chipClicked.setTextColor(Color.BLACK)
-        }
-        else
-        {
-            chipClicked.isSelected = true
+        setChipsDefault()
 
-            chipClicked.chipIcon = resources.getDrawable(R.drawable.tick_icon,null)
-            chipClicked.chipBackgroundColor = getColorStateList(requireContext(), R.color.colorPrimary)
-            chipClicked.setTextColor(Color.WHITE)
+        chipClicked.isSelected = true
+
+        chipClicked.chipIcon = resources.getDrawable(R.drawable.tick_icon,null)
+        chipClicked.chipBackgroundColor = getColorStateList(requireContext(), R.color.colorPrimary)
+        chipClicked.setTextColor(Color.WHITE)
+
+        when (chipClicked.text.toString())
+        {
+            categories[0] ->
+            {
+                NewsAPIService.create().getTechnologyNews().enqueue(this)
+            }
+            categories[1] -> NewsAPIService.create().getPoliticsNews().enqueue(this)
+            categories[2] -> NewsAPIService.create().getSportsNews().enqueue(this)
+            categories[3] -> NewsAPIService.create().getEntertainmentNews().enqueue(this)
+            categories[4] -> NewsAPIService.create().getBusinessNews().enqueue(this)
+            categories[5] -> NewsAPIService.create().getGeneralNews().enqueue(this)
+            categories[1] -> NewsAPIService.create().getScienceNews().enqueue(this)
 
         }
+
+
 
         Log.d(TAG, "onClick: "+chipClicked.text)
 
+    }
+
+
+    fun setChipsDefault()
+    {
+        for(i in 0 until filter_chips.childCount)
+        {
+            val chipClicked = filter_chips.getChildAt(i) as Chip
+            chipClicked.chipIcon = null
+            chipClicked.isSelected = false
+            chipClicked.chipBackgroundColor = getColorStateList(requireContext(), R.color.colorChip)
+            chipClicked.setTextColor(Color.BLACK)
+
+        }
     }
 
     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -149,12 +181,13 @@ chipClicked.chipBackgroundColor = getColorStateList(requireContext(), R.color.co
 
     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
 
-
         val array = NewsAPIService.parse(response.body()!!.string())
-
-
-        recycler_news_list.adapter = NewsAdapter(array)
+        val adapter = NewsAdapter(array, context)
+        recycler_news_list.adapter = adapter
         recycler_news_list.layoutManager = LinearLayoutManager(context)
+        adapter.notifyDataSetChanged()
       //  Log.d(TAG, "onResponse: "+)
     }
+
+
 }
