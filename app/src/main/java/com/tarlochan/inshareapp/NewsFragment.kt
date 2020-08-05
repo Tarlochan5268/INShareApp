@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.kishorenarang.adapters.NewsAdapter
 import com.kishorenarang.api.NewsAPIService
 import kotlinx.android.synthetic.main.fragment_news.*
 import okhttp3.ResponseBody
@@ -87,6 +89,8 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
 
         }
 
+
+
     }
 
     companion object {
@@ -146,6 +150,11 @@ chipClicked.chipBackgroundColor = getColorStateList(requireContext(), R.color.co
     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
 
 
-        Log.d(TAG, "onResponse: "+NewsAPIService.parse(response.body()!!.string()).size)
+        val array = NewsAPIService.parse(response.body()!!.string())
+
+
+        recycler_news_list.adapter = NewsAdapter(array)
+        recycler_news_list.layoutManager = LinearLayoutManager(context)
+      //  Log.d(TAG, "onResponse: "+)
     }
 }

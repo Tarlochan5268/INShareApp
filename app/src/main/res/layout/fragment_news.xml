@@ -28,11 +28,12 @@
         android:scrollbars="none"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:id="@+id/scroller"
         app:layout_constraintTop_toBottomOf="@id/filter_text">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/filter_chips"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +44,16 @@
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scroller" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
