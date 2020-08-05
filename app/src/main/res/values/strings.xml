@@ -10,5 +10,7 @@
 
     <!--Resources by Kishore Narang-->
     <string name="filter_text">News By Category</string>
+    <string name="title">News Title</string>
+    <string name="description">News Description will come here. You can describe arround 50 wordss here so that the person infront of you can think what it is.</string>
 
 </resources>

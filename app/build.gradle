@@ -51,5 +51,13 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:x.x.x"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:x.x.x"
+    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+    implementation  "org.jetbrains.anko:anko-commons:0.10.1"
+    //implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    implementation ('com.googlecode.json-simple:json-simple:1.1.1') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
 
 }
