@@ -59,12 +59,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:paddingLeft="20dp"
+        android:backgroundTint="@android:color/white"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="#FFFFFF"
@@ -86,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnDevice"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,6 +98,7 @@
         android:paddingLeft="20dp"
         android:elevation="30dp"
         android:fontFamily="@font/poppins_semibold"
+        android:backgroundTint="@android:color/white"
         android:shadowColor="#E7EAF0"
         android:shadowDy="8"
         android:shadowRadius="15"
@@ -112,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnModel"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnTransfer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,6 +126,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:paddingLeft="20dp"
         android:shadowColor="#E7EAF0"
+        android:backgroundTint="@android:color/white"
         android:shadowDy="8"
         android:shadowRadius="15"
         android:text="Transfers"
