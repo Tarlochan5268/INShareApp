@@ -4,17 +4,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.tarlochan.inshareapp.ui.Constants
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-public lateinit var pref: SharedPreferences
+lateinit var pref: SharedPreferences
+private var selectedAvatar: String = "smile.png"
+private var usernameEntered: String = "Username"
+var imgSelected: ImageView? = null
 
 /**
  * A simple [Fragment] subclass.
@@ -34,7 +41,6 @@ class EditFragment : Fragment() {
         }
     }
 
-    @SuppressLint("CommitPrefEdits")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,12 +48,67 @@ class EditFragment : Fragment() {
         // Inflate the layout for this fragment
         val root =  inflater.inflate(R.layout.fragment_edit, container, false)
 
-        //pref = requireContext().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
-        //val editor:SharedPreferences.Editor = pref.edit()
-        //editor.putString(Constants.USER_NAME,yourscoreInt.toString())
+        imgSelected =  root.findViewById<ImageView>(R.id.imgSelected)
+        val btnSave: Button =  root.findViewById<Button>(R.id.btnSave)
+        val edtUsername: EditText =  root.findViewById<EditText>(R.id.edtUserName)
+        val imgboy: ImageView =  root.findViewById<ImageView>(R.id.imgboy)
+        val imgcall: ImageView =  root.findViewById<ImageView>(R.id.imgcall)
+        val imgface: ImageView =  root.findViewById<ImageView>(R.id.imgface)
+        val imggirl: ImageView =  root.findViewById<ImageView>(R.id.imggirl)
+        val imgsmile: ImageView =  root.findViewById<ImageView>(R.id.imgsmile)
 
+        pref = requireContext().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        edtUsername.setText(pref.getString(Constants.USER_NAME,"Username")).toString()
+        imgAvatarSelected(pref.getString(Constants.IMG_AVATAR,"boy")!!)
+
+        btnSave.isActivated = false
+        btnSave.setOnClickListener{
+            saveToSharedPreference(edtUsername.text.toString())
+        }
+        imgboy.isActivated = false
+        imgboy.setOnClickListener{
+            imgAvatarSelected(imgboy.contentDescription.toString())
+        }
+
+        imgcall.isActivated = false
+        imgcall.setOnClickListener{
+            imgAvatarSelected(imgcall.contentDescription.toString())
+        }
+
+        imgface.isActivated = false
+        imgface.setOnClickListener{
+            imgAvatarSelected(imgface.contentDescription.toString())
+        }
+
+        imggirl.isActivated = false
+        imggirl.setOnClickListener{
+            imgAvatarSelected(imggirl.contentDescription.toString())
+        }
+
+        imgsmile.isActivated = false
+        imgsmile.setOnClickListener{
+            imgAvatarSelected(imgsmile.contentDescription.toString())
+        }
         return root
     }
+
+    @SuppressLint("CommitPrefEdits")
+    private fun saveToSharedPreference(userNameEntered: String)
+    {
+        val editor:SharedPreferences.Editor = pref.edit()
+        editor.putString(Constants.USER_NAME, userNameEntered)
+        editor.putString(Constants.IMG_AVATAR, selectedAvatar)
+        editor.apply()
+        Toast.makeText(context,"Saved",Toast.LENGTH_SHORT).show()
+    }
+
+    private fun imgAvatarSelected(contentDescription: String)
+    {
+        val id = requireContext().resources.getIdentifier(contentDescription, "drawable", requireContext().packageName)
+        imgSelected!!.setImageResource(id)
+        selectedAvatar = contentDescription
+    }
+
 
     companion object {
         /**
