@@ -15,7 +15,13 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.tarlochan.inshareapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_sendFragment"
+            app:destination="@id/sendFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -32,4 +38,9 @@
         android:name="com.tarlochan.inshareapp.HistoryFragment"
         android:label="History"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/sendFragment"
+        android:name="com.kishorenarang.ui.SendFragment"
+        android:label="send_fragment"
+        tools:layout="@layout/send_fragment" />
 </navigation>
