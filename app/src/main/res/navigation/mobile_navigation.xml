@@ -19,8 +19,10 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_sendFragment"
             app:destination="@id/sendFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+           app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 
     <fragment
@@ -40,7 +42,7 @@
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/sendFragment"
-        android:name="com.kishorenarang.ui.SendFragment"
+        android:name="com.kishorenarang.ui.send.SendFragment"
         android:label="send_fragment"
         tools:layout="@layout/send_fragment" />
 </navigation>

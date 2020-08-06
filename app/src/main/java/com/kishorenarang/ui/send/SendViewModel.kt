@@ -1,4 +1,4 @@
-package com.kishorenarang.ui
+package com.kishorenarang.ui.send
 
 import androidx.lifecycle.ViewModel
 
