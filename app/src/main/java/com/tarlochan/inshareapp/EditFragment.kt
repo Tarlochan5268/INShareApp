@@ -20,7 +20,6 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 lateinit var pref: SharedPreferences
 private var selectedAvatar: String = "smile.png"
-private var usernameEntered: String = "Username"
 var imgSelected: ImageView? = null
 
 /**
@@ -102,13 +101,13 @@ class EditFragment : Fragment() {
         Toast.makeText(context,"Saved",Toast.LENGTH_SHORT).show()
     }
 
+
     private fun imgAvatarSelected(contentDescription: String)
     {
         val id = requireContext().resources.getIdentifier(contentDescription, "drawable", requireContext().packageName)
         imgSelected!!.setImageResource(id)
         selectedAvatar = contentDescription
     }
-
 
     companion object {
         /**
