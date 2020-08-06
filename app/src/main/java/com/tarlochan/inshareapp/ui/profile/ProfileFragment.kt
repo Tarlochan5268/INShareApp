@@ -7,15 +7,11 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.tarlochan.inshareapp.R
 
 class ProfileFragment : Fragment() {
@@ -26,7 +22,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        val btnDevice: Button = root.findViewById(R.id.btnDevice)
+        val btnDevice: Button = root.findViewById(R.id.btnEdit)
         val deviceSpannableText = SpannableString("Device     "+android.os.Build.DEVICE)
         deviceSpannableText.setSpan(ForegroundColorSpan(Color.rgb(255,153,52)), 11, deviceSpannableText.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         deviceSpannableText.setSpan(AbsoluteSizeSpan(20, true), 11, deviceSpannableText.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)

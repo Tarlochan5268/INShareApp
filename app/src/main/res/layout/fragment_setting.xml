@@ -8,7 +8,7 @@
     tools:context=".ui.setting.SettingFragment">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDevice"
+        android:id="@+id/btnEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -23,7 +23,7 @@
         android:shadowColor="#E7EAF0"
         android:shadowDy="8"
         android:shadowRadius="15"
-        android:text="         Avatar"
+        android:text="         Edit Profile"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="#8890A6"

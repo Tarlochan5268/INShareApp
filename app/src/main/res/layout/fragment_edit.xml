@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/topbackground"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_marginTop="-50dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ImageView
+        android:id="@+id/imgSelected"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029"
+        app:srcCompat="@drawable/smile"
+        tools:src="@drawable/smile" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:backgroundTint="@android:color/white"
+        android:checkable="false"
+        android:clickable="false"
+        android:elevation="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingLeft="20dp"
+        android:shadowColor="#E7EAF0"
+        android:shadowDy="8"
+        android:shadowRadius="15"
+        android:text="Select Avatar"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFA000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.286" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:backgroundTint="@android:color/white"
+        android:checkable="false"
+        android:clickable="false"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingLeft="20dp"
+        android:shadowColor="#E7EAF0"
+        android:shadowDy="8"
+        android:shadowRadius="15"
+        android:text="Enter Username"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFA000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.581" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        app:layout_constraintVertical_bias="0.401">
+
+        <ImageView
+            android:id="@+id/imgboy"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:contentDescription="Boy"
+            android:focusable="true"
+            app:srcCompat="@drawable/boy"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="229dp" />
+
+        <ImageView
+            android:id="@+id/imgcall"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:contentDescription="Call"
+            android:focusable="true"
+            app:srcCompat="@drawable/call"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="229dp" />
+
+        <ImageView
+            android:id="@+id/imgface"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:contentDescription="Face"
+            android:focusable="true"
+            app:srcCompat="@drawable/face"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="229dp" />
+
+        <ImageView
+            android:id="@+id/imggirl"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:contentDescription="Girl"
+            android:focusable="true"
+            app:srcCompat="@drawable/girl"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="229dp" />
+
+        <ImageView
+            android:id="@+id/imgsmile"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:contentDescription="Smile"
+            android:focusable="true"
+            app:srcCompat="@drawable/smile"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="229dp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Enter UserName"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.646" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.758" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
