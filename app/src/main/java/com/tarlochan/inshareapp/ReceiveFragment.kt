@@ -49,67 +49,13 @@ class ReceiveFragment : Fragment() {
         val handler: Handler = Handler()
         runnable = Runnable {
             run() {
-                im1.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(3900).withEndAction(
-                    Runnable {
-                        run() {
-                            im1.scaleX = 1f
-                            im1.scaleY = 1f
-                            im1.alpha = 1f
-                        }
-                    }
-                )
 
-                im2.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(3600).withEndAction(
-                    Runnable {
-                        run() {
-                            im2.scaleX = 1f
-                            im2.scaleY = 1f
-                            im2.alpha = 1f
-                            im2.elevation = 4F
-                        }
-                    }
-                )
-
-                im3.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(3300).withEndAction(
-                    Runnable {
-                        run() {
-                            im3.scaleX = 1f
-                            im3.scaleY = 1f
-                            im3.alpha = 1f
-                            im3.elevation = 7F
-                        }
-                    }
-                )
-                im4.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(3000).withEndAction(
-                    Runnable {
-                        run() {
-                            im4.scaleX = 1f
-                            im4.scaleY = 1f
-                            im4.alpha = 1f
-                            im4.elevation = 10F
-                        }
-                    }
-                )
-                im5.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(2700).withEndAction(
-                    Runnable {
-                        run() {
-                            im5.scaleX = 1f
-                            im5.scaleY = 1f
-                            im5.alpha = 1f
-                            im5.elevation = 12F
-                        }
-                    }
-                )
-                im6.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(2400).withEndAction(
-                    Runnable {
-                        run() {
-                            im6.scaleX = 1f
-                            im6.scaleY = 1f
-                            im6.alpha = 1f
-                            im6.elevation = 15F
-                        }
-                    }
-                )
+                imgAnimate(im1,3900,0F)
+                imgAnimate(im2,3600,4F)
+                imgAnimate(im3,3300,7F)
+                imgAnimate(im4,3000,10F)
+                imgAnimate(im5,2700,12F)
+                imgAnimate(im6,2400,15F)
 
                 handler.postDelayed(runnable,3900)
             }
@@ -118,6 +64,20 @@ class ReceiveFragment : Fragment() {
         runnable.run()
 
         return root
+    }
+
+    private fun imgAnimate(img: ImageView, duration: Long, elevation: Float)
+    {
+        img.animate().scaleX(5f).scaleY(5f).alpha(0f).setDuration(duration).withEndAction(
+            Runnable {
+                run() {
+                    img.scaleX = 1f
+                    img.scaleY = 1f
+                    img.alpha = 1f
+                    img.elevation = elevation
+                }
+            }
+        )
     }
 
     companion object {
