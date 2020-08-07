@@ -13,7 +13,7 @@
     <string name="title">News Title</string>
     <string name="description">News Description will come here. You can describe arround 50 wordss here so that the person infront of you can think what it is.</string>
     <string name="tab_title_one">Apps</string>
-    <string name="tab_title_two">Files</string>
+    <string name="tab_title_two">Files &amp; Media</string>
     <string name="tab_title_three">Media</string>
     <string name="app_install_fragment">Choose Apps to Transfer</string>
 </resources>

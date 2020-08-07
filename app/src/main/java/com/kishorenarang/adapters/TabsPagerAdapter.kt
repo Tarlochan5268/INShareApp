@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.kishorenarang.ui.send.tabs.Apps
 import com.kishorenarang.ui.send.tabs.Files
-import com.kishorenarang.ui.send.tabs.Media
+
 
 class TabsPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
@@ -21,7 +21,7 @@ class TabsPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(
             {
                 0 -> return Apps()
                 1 -> return Files()
-                2 -> return Media()
+
                 else -> return Apps()
             }
 
