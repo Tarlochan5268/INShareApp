@@ -12,7 +12,7 @@ import com.kishorenarang.ui.send.tabs.Files
 class TabsPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
 
-        return 3;
+        return 2;
     }
 
     override fun createFragment(position: Int): Fragment {
