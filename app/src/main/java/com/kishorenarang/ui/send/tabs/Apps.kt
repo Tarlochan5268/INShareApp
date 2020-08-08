@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.kishorenarang.adapters.AppsAdapter
 import com.kishorenarang.api.App
 import com.tarlochan.inshareapp.R
+import kotlinx.android.synthetic.main.fragment_news.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,23 +44,28 @@ class Apps : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_apps, container, false)
+
+        val root = inflater.inflate(R.layout.fragment_apps, container, false)
+        val recyclerView: RecyclerView =  root.findViewById<RecyclerView>(R.id.rvApp)
+        val adapter = AppsAdapter(getInstalledApps(), context)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter.notifyDataSetChanged()
+
+        return root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         //get all installed apps.
-
     }
 
     //creating a function for all installed apps;
 
-    fun getInstalledApps():List<App>
+    private fun getInstalledApps():List<App>
     {
-        var list = arrayListOf<App>()
+        val list = arrayListOf<App>()
         val pm = requireActivity().packageManager!!
         val packageInfo:List<PackageInfo> = pm.getInstalledPackages(0)
         for(pack in packageInfo)

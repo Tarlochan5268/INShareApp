@@ -54,12 +54,6 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-
-
-
-
-
     }
 
     override fun onCreateView(
@@ -68,9 +62,6 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_news, container, false)
-
-
-
     }
 
 
@@ -93,12 +84,7 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
 
         }
 
-
-
-
         NewsAPIService.create().getGeneralNews().enqueue(this)
-
-
     }
 
     companion object {

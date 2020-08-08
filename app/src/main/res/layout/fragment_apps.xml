@@ -12,13 +12,10 @@
         android:text="@string/app_install_fragment"
         android:padding="10dp"/>
 
-   <GridView
+   <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"
+       android:id="@+id/rvApp"
        android:layout_height="match_parent"
-       android:gravity="center"
-       android:columnWidth="100dp"
-       android:verticalSpacing="10dp"
-       android:horizontalSpacing="10dp"
-       android:numColumns="auto_fit"/>
+       android:layout_marginBottom="45dp"/>
 
 </LinearLayout>
