@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/apps_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="15dp"
-    android:id="@+id/apps_card">
+    app:cardBackgroundColor="#FFFFFF">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/ivAppIcon"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_game"
-            android:id="@+id/ivAppIcon"/>
+            app:srcCompat="@drawable/ic_game" />
+
         <LinearLayout
+            android:id="@+id/containLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/tvAppName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="App Name Labeled"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:id="@+id/tvAppName"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvAppPackage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="App Package Name"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:id="@+id/tvAppPackage"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>

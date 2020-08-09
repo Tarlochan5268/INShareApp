@@ -3,10 +3,13 @@ package com.kishorenarang.ui.send.tabs
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.core.util.forEach
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,10 +50,26 @@ class Apps : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_apps, container, false)
         val recyclerView: RecyclerView =  root.findViewById<RecyclerView>(R.id.rvApp)
-        val adapter = AppsAdapter(getInstalledApps(), context)
+        val getAppList = getInstalledApps()
+        val adapter = AppsAdapter(getAppList, context)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter.notifyDataSetChanged()
+
+        val toolBarButton:ImageButton = root.findViewById(R.id.toolbarBtn)
+        toolBarButton.setOnClickListener(View.OnClickListener {
+            Log.d("--> Array Adapter: ",adapter.checkBoxStateArray.toString())
+            val list = arrayListOf<App>()
+            list.clear()
+            adapter.checkBoxStateArray.forEach { key, value -> if(value)
+            {
+                list.add(getAppList[key])
+            }}
+
+            list.forEach { t -> Log.d("---> Item: ",t.name!!) }
+            list.clear()
+            adapter.checkBoxStateArray.clear()
+        })
 
         return root
     }
