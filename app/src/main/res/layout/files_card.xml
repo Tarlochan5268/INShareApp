@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/ivFileIcon"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:srcCompat="@drawable/ic_game" />
 
         <LinearLayout
@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="File Name Labeled"
+                android:textColor="@color/colorPrimary"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -39,9 +40,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
+                android:lines="1"
+                android:singleLine="true"
                 android:text="File Location"
-                android:textSize="8sp"
-                android:textStyle="bold" />
+                android:textSize="8sp" />
 
             <TextView
                 android:id="@+id/tvFileSize"

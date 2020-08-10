@@ -1,36 +1,21 @@
 package com.kishorenarang.ui.send.tabs
 
-import android.Manifest
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.net.wifi.WifiManager
-import android.net.wifi.p2p.WifiP2pDevice
-import android.net.wifi.p2p.WifiP2pDeviceList
-import android.net.wifi.p2p.WifiP2pManager
-import android.os.Build
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.util.forEach
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kishorenarang.adapters.AppsAdapter
 import com.kishorenarang.api.App
-import com.kishorenarang.api.WiFiDirectBroadcastReceiver
-import com.kishorenarang.api.WifiUtility
 import com.tarlochan.inshareapp.R
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -64,10 +49,6 @@ class Apps : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-
-
-        //return inflater.inflate(R.layout.fragment_apps, container, false)
-
         val root = inflater.inflate(R.layout.fragment_apps, container, false)
         val recyclerView: RecyclerView =  root.findViewById<RecyclerView>(R.id.rvApp)
         val getAppList = getInstalledApps()
@@ -76,8 +57,9 @@ class Apps : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter.notifyDataSetChanged()
 
-        val toolBarButton: ImageButton = root.findViewById(R.id.toolbarBtn)
+        val toolBarButton:ImageButton = root.findViewById(R.id.toolbarBtn)
         toolBarButton.setOnClickListener(View.OnClickListener {
+            Toast.makeText(context,"Pressed Check LogCat",Toast.LENGTH_SHORT).show()
             Log.d("--> Array Adapter: ",adapter.checkBoxStateArray.toString())
             val list = arrayListOf<App>()
             list.clear()
@@ -97,11 +79,16 @@ class Apps : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //get all installed apps.
+    }
+
     //creating a function for all installed apps;
 
-    fun getInstalledApps():List<App>
+    private fun getInstalledApps():List<App>
     {
-        var list = arrayListOf<App>()
+        val list = arrayListOf<App>()
         val pm = requireActivity().packageManager!!
         val packageInfo:List<PackageInfo> = pm.getInstalledPackages(0)
         for(pack in packageInfo)

@@ -87,7 +87,7 @@ class SendFragment : Fragment() {
     }
     override fun onDestroy() {
         super.onDestroy()
-        viewpager.unregisterOnPageChangeCallback(this.viewPageChangeCallback!!)
+        //viewpager.unregisterOnPageChangeCallback(this.viewPageChangeCallback!!)
 
     }
 
