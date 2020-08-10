@@ -117,11 +117,11 @@ class Files : Fragment() {
                     {
                         if(requestCode == REQUEST_FILE)
                         {
-                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
+                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),formatLocation(e.uri.toString()),simplifySize(cursor.getLong(sizeIndex).toString())))
                         }
                         else
                         {
-                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_media_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
+                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_media_file,requireContext().theme),formatLocation(e.uri.toString()),simplifySize(cursor.getLong(sizeIndex).toString())))
                         }
 
                     }
@@ -142,6 +142,15 @@ class Files : Fragment() {
         }
         return (df.format(size.toFloat()/1000000)).toString()+" MB"
         //return (size.toFloat()/1000000).toString()+" MB";
+    }
+
+    private fun formatLocation(fileLoc: String):String
+    {
+        if(fileLoc.indexOf("/",11) == -1)
+        {
+            return fileLoc.substring(10)
+        }
+        return fileLoc.substring(fileLoc.indexOf("/",11))
     }
 
     private fun checkIfFileExistAlready(fileName:String):Boolean
