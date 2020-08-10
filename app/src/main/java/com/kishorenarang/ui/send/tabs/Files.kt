@@ -23,6 +23,8 @@ import com.kishorenarang.adapters.FilesAdapter
 import com.kishorenarang.api.FileItem
 import com.tarlochan.inshareapp.R
 import kotlinx.android.synthetic.main.fragment_files.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +32,8 @@ import kotlinx.android.synthetic.main.fragment_files.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+
+private const val REQUEST_GALLERY = 102
 private const val REQUEST_FILE = 103
 
 /**
@@ -71,7 +75,6 @@ class Files : Fragment() {
         })
 
         val fabAddFiles:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabAddFiles)
-        val fabAddMedia:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabAddMedia)
         fabAddFiles.setOnClickListener(View.OnClickListener {
             tvMiddleText.isVisible = false
             KotRequest.File(requireActivity(), REQUEST_FILE)
@@ -79,10 +82,14 @@ class Files : Fragment() {
                 .setMimeType(KotConstants.FILE_TYPE_FILE_ALL)
                 .pick()
             Toast.makeText(context,"Fab Button Files Clicked ",Toast.LENGTH_SHORT).show()
-            Log.d("--> Result Check: ","Checking Files")
+            //Log.d("--> Result Check: ","Checking Files")
         })
+        val fabAddMedia:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabAddMedia)
         fabAddMedia.setOnClickListener(View.OnClickListener {
             tvMiddleText.isVisible = false
+            KotRequest.Gallery(requireActivity(), REQUEST_GALLERY)
+                .isMultiple(true)
+                .pick()
             Toast.makeText(context,"Fab Button Media Clicked ",Toast.LENGTH_SHORT).show()
         })
         return root
@@ -90,7 +97,7 @@ class Files : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (REQUEST_FILE == requestCode && resultCode == Activity.RESULT_OK) {
+
             val result = data?.getParcelableArrayListExtra<KotResult>(KotConstants.EXTRA_FILE_RESULTS)
             //Log.d("--> Result Got: ",result.toString())
             result!!.forEach { e ->
@@ -108,19 +115,33 @@ class Files : Fragment() {
                     }
                     else
                     {
-                        FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
-                    }
+                        if(requestCode == REQUEST_FILE)
+                        {
+                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
+                        }
+                        else
+                        {
+                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_media_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
+                        }
 
+                    }
                 }
             }
 
             adapter!!.notifyDataSetChanged()
-        }
     }
 
     private fun simplifySize(size:String) : String
     {
-        return (size.toLong()/1000000).toString()+" MB";
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        if(size.toLong()/1000000<1)
+        {
+            //return (df.format(size.toFloat()/1000)).toString()+" KB"
+            return (size.toLong()/1000).toString()+" KB";
+        }
+        return (df.format(size.toFloat()/1000000)).toString()+" MB"
+        //return (size.toFloat()/1000000).toString()+" MB";
     }
 
     private fun checkIfFileExistAlready(fileName:String):Boolean
