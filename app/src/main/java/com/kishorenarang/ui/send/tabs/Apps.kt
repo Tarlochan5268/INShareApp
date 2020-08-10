@@ -67,6 +67,8 @@ class Apps : Fragment() {
             }}
 
             list.forEach { t -> Log.d("---> Item: ",t.name!!) }
+            // --> can transfer this list to next fragment
+
             list.clear()
             adapter.checkBoxStateArray.clear()
         })
