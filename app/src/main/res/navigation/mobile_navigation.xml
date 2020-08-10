@@ -23,6 +23,9 @@
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_navigation_dashboard_to_receiveFragment"
+            app:destination="@id/receiveFragment" />
     </fragment>
 
     <fragment
@@ -45,4 +48,8 @@
         android:name="com.kishorenarang.ui.send.SendFragment"
         android:label="send_fragment"
         tools:layout="@layout/send_fragment" />
+    <fragment
+        android:id="@+id/receiveFragment"
+        android:name="com.tarlochan.inshareapp.ReceiveFragment"
+        android:label="ReceiveFragment" />
 </navigation>

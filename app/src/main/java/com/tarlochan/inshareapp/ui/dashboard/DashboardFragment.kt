@@ -71,6 +71,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         when(p0!!.id)
         {
             R.id.btnSend -> navController!!.navigate(R.id.action_navigation_dashboard_to_sendFragment)
+            R.id.btnReceive -> navController!!.navigate(R.id.action_navigation_dashboard_to_receiveFragment)
         }
     }
 }
