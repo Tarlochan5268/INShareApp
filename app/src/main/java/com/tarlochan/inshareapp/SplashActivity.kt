@@ -10,7 +10,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_splash)
-
         //3second splash time
         Handler().postDelayed({
             //start main activity
