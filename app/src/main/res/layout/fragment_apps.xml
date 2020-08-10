@@ -1,24 +1,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kishorenarang.ui.send.tabs.Apps"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.kishorenarang.ui.send.tabs.Apps">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_install_fragment"
-        android:padding="10dp"/>
+        android:background="@color/colorPrimary"
+        android:titleTextColor="@color/cardview_light_background"
+        android:title="Choose Apps">
 
-   <GridView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:gravity="center"
-       android:columnWidth="100dp"
-       android:verticalSpacing="10dp"
-       android:horizontalSpacing="10dp"
-       android:numColumns="auto_fit"/>
+        <ImageButton
+            android:id="@+id/toolbarBtn"
+            android:layout_marginLeft="220dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_double_arrow" />
+    </Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvApp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="45dp" />
 
 </LinearLayout>

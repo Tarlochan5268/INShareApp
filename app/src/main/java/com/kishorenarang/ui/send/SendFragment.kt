@@ -1,9 +1,5 @@
 package com.kishorenarang.ui.send
 
-import android.content.Context
-import android.content.Intent
-import android.net.wifi.WifiManager
-import android.os.Build
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.provider.Settings
@@ -12,8 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kishorenarang.adapters.TabsPagerAdapter
@@ -22,8 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.send_fragment.*
 
 class SendFragment : Fragment() {
-
-
+    private var viewPageChangeCallback: ViewPager2.OnPageChangeCallback? = null
     private  val TAG = "SendFragment"
     companion object {
         fun newInstance() = SendFragment()
@@ -44,10 +37,23 @@ class SendFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewpager.adapter = TabsPagerAdapter(requireActivity())
+        TabLayoutMediator(tabs, viewpager,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+
+                when (position) {
+                    0 -> {
+                        tab.text = "APPS"
+                    }
+                    1 -> {
+                        tab.text = "MEDIA"
+                    }
+                }
+            }).attach()
 
         TabLayoutMediator(tabs, viewpager, object:TabLayoutMediator.TabConfigurationStrategy{
             override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {

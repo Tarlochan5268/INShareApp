@@ -14,18 +14,16 @@ import android.net.wifi.p2p.WifiP2pDeviceList
 import android.net.wifi.p2p.WifiP2pManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.kishorenarang.adapters.AppsAdapter
 import com.kishorenarang.api.App
-import com.kishorenarang.api.WiFiDirectBroadcastReceiver
 import com.tarlochan.inshareapp.R
+import kotlinx.android.synthetic.main.fragment_news.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -84,6 +82,33 @@ class Apps : Fragment() {
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION)
 
         return inflater.inflate(R.layout.fragment_apps, container, false)
+
+        val root = inflater.inflate(R.layout.fragment_apps, container, false)
+        val recyclerView: RecyclerView =  root.findViewById<RecyclerView>(R.id.rvApp)
+        val getAppList = getInstalledApps()
+        val adapter = AppsAdapter(getAppList, context)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter.notifyDataSetChanged()
+
+        val toolBarButton:ImageButton = root.findViewById(R.id.toolbarBtn)
+        toolBarButton.setOnClickListener(View.OnClickListener {
+            Log.d("--> Array Adapter: ",adapter.checkBoxStateArray.toString())
+            val list = arrayListOf<App>()
+            list.clear()
+            adapter.checkBoxStateArray.forEach { key, value -> if(value)
+            {
+                list.add(getAppList[key])
+            }}
+
+            list.forEach { t -> Log.d("---> Item: ",t.name!!) }
+            // --> can transfer this list to next fragment
+
+            list.clear()
+            adapter.checkBoxStateArray.clear()
+        })
+
+        return root
     }
 
 //edits by kishore narang
@@ -138,33 +163,10 @@ class Apps : Fragment() {
 
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //get all installed apps.
     }
-
-
-    override fun onResume() {
-        super.onResume()
-        requireActivity().registerReceiver(receiver, intentFilter)
-        Log.d(TAG, "onResume: RECEIVER HAS BEEN REGISTERED")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        requireActivity().unregisterReceiver(receiver)
-        Log.d(TAG, "onPause: UNREGISTERING RECEIVER")
-    }
-
-
-    //end of edits by kishore narang
-
-
-
-
-
-
-
-
-
-
 
     //creating a function for all installed apps;
 
