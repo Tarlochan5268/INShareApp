@@ -133,7 +133,7 @@ class SendFragment : Fragment() {
     var channel: WifiP2pManager.Channel? = null
     val intentFilter: IntentFilter = IntentFilter()
     var receiver: BroadcastReceiver? = null
-    private  val TAG = "Apps"
+    private  val TAG = "SendFragment"
     var peers:MutableList<WifiP2pDevice> = arrayListOf()
 
 
@@ -144,7 +144,7 @@ class SendFragment : Fragment() {
             {
                 peers.clear()
                 peers.addAll(p0!!.deviceList)
-                Log.d(TAG, "onPeersAvailable: "+peers.toString())
+                Log.d(TAG, "onPeersAvailable: "+peers.size)
             }
 
 

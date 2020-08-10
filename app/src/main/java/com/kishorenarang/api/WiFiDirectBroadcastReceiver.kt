@@ -76,7 +76,6 @@ class WiFiDirectBroadcastReceiver() : BroadcastReceiver(), Parcelable {
             }
             WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION -> {
 
-                Toast.makeText(fragment!!.requireContext(), "Starting getting peers",Toast.LENGTH_LONG).show()
                 if(manager!=null)
                 {
                     if (ActivityCompat.checkSelfPermission(

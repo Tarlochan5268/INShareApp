@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -44,7 +45,10 @@ class SendFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewpager.adapter = TabsPagerAdapter(requireActivity())
+
+
+        viewpager.adapter = TabsPagerAdapter(requireActivity(), Navigation.findNavController(view))
+        Log.d(TAG, "onViewCreated: "+Navigation.findNavController(view).toString())
         TabLayoutMediator(tabs, viewpager,
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
 
@@ -59,12 +63,11 @@ class SendFragment : Fragment() {
             }).attach()
 
         tabs.setSelectedTabIndicatorColor(Color.WHITE)
-        tabs.outlineAmbientShadowColor = Color.DKGRAY
+       // tabs.outlineAmbientShadowColor = Color.DKGRAY
         tabs.setTabTextColors(Color.rgb(229,229,229), Color.WHITE)
         viewPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                Toast.makeText(context, "Selected position: ${position}",
-                    Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onPageScrollStateChanged(state: Int) {

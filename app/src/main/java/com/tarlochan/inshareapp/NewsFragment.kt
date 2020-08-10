@@ -162,7 +162,7 @@ class NewsFragment : Fragment(), View.OnClickListener, Callback<ResponseBody> {
     }
 
     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-        Toast.makeText(context, "Failed to fetch the news for your country",Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Internet Connection Required for News",Toast.LENGTH_LONG).show()
     }
 
     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {

@@ -36,14 +36,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                 ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
-        val btnSend: Button =  root.findViewById<Button>(R.id.btnSend)
-        btnSend.isActivated = false
-        btnSend.setOnClickListener{
-            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.nav_host_fragment, SendFragment())
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
+
         val btnReceive: Button =  root.findViewById<Button>(R.id.btnReceive)
         btnReceive.isActivated = false
         btnReceive.setOnClickListener{
