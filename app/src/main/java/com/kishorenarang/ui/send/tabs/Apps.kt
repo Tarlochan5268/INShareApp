@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.util.forEach
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,6 +59,7 @@ class Apps : Fragment() {
 
         val toolBarButton:ImageButton = root.findViewById(R.id.toolbarBtn)
         toolBarButton.setOnClickListener(View.OnClickListener {
+            Toast.makeText(context,"Pressed Check LogCat",Toast.LENGTH_SHORT).show()
             Log.d("--> Array Adapter: ",adapter.checkBoxStateArray.toString())
             val list = arrayListOf<App>()
             list.clear()
@@ -66,7 +68,7 @@ class Apps : Fragment() {
                 list.add(getAppList[key])
             }}
 
-            list.forEach { t -> Log.d("---> Item: ",t.name!!) }
+            list.forEach { t -> Log.d("--> Item: ",t.name!!) }
             // --> can transfer this list to next fragment
 
             list.clear()

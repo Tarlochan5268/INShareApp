@@ -2,6 +2,7 @@ package com.kishorenarang.ui.send.tabs
 
 import android.app.Activity
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,6 +73,7 @@ class Files : Fragment() {
         val fabAddFiles:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabAddFiles)
         val fabAddMedia:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabAddMedia)
         fabAddFiles.setOnClickListener(View.OnClickListener {
+            tvMiddleText.isVisible = false
             KotRequest.File(requireActivity(), REQUEST_FILE)
                 .isMultiple(true)
                 .setMimeType(KotConstants.FILE_TYPE_FILE_ALL)
@@ -79,7 +82,7 @@ class Files : Fragment() {
             Log.d("--> Result Check: ","Checking Files")
         })
         fabAddMedia.setOnClickListener(View.OnClickListener {
-
+            tvMiddleText.isVisible = false
             Toast.makeText(context,"Fab Button Media Clicked ",Toast.LENGTH_SHORT).show()
         })
         return root
@@ -97,9 +100,17 @@ class Files : Fragment() {
                     val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
                     val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
                     cursor.moveToFirst()
-                    Log.d("--> Name: ",cursor.getString(nameIndex))
-                    Log.d("--> Size: ",cursor.getLong(sizeIndex).toString())
-                    FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
+                    //Log.d("--> Name: ",cursor.getString(nameIndex))
+                    //Log.d("--> Size: ",cursor.getLong(sizeIndex).toString())
+                    if(checkIfFileExistAlready(cursor.getString(nameIndex)))
+                    {
+                       Toast.makeText(context,"Some File Have Already Been Added Before",Toast.LENGTH_SHORT) .show()
+                    }
+                    else
+                    {
+                        FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),e.uri.toString(),simplifySize(cursor.getLong(sizeIndex).toString())))
+                    }
+
                 }
             }
 
@@ -107,15 +118,28 @@ class Files : Fragment() {
         }
     }
 
-    fun simplifySize(size:String) : String
+    private fun simplifySize(size:String) : String
     {
         return (size.toLong()/1000000).toString()+" MB";
     }
-    fun addToList(data: Intent?)
+
+    private fun checkIfFileExistAlready(fileName:String):Boolean
     {
-        val result = data?.getParcelableArrayListExtra<KotResult>(KotConstants.EXTRA_FILE_RESULTS)
-        Log.d("--> Result Got: ",result.toString())
-        result!!.forEach { e -> Log.d("--> File Got: ",e.toString()) }
+        var flag:Boolean = false
+        FilesList.forEach {
+            file ->
+            //Log.d("--> In FileList : ",file.name+" - "+fileName)
+            if(file.name!!.compareTo(fileName) == 0)
+            {
+                flag = true
+                return flag
+            }
+            else
+            {
+                flag = false
+            }
+        }
+        return flag
     }
     companion object {
         /**
