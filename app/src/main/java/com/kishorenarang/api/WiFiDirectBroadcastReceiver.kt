@@ -23,8 +23,8 @@ class WiFiDirectBroadcastReceiver() : BroadcastReceiver(), Parcelable {
 
     var manager:WifiP2pManager? = null
     var channel:WifiP2pManager.Channel?=null
-    var fragment:Apps? = null
-    private constructor(manager: WifiP2pManager,  channel: WifiP2pManager.Channel,  fragment: Apps) : this() {
+    var fragment:com.tarlochan.inshareapp.SendFragment? = null
+    private constructor(manager: WifiP2pManager,  channel: WifiP2pManager.Channel,  fragment: com.tarlochan.inshareapp.SendFragment) : this() {
         this.manager = manager
         this.channel = channel
         this.fragment = fragment
@@ -35,7 +35,7 @@ class WiFiDirectBroadcastReceiver() : BroadcastReceiver(), Parcelable {
     companion object{
 
         var obj:WiFiDirectBroadcastReceiver?=  null
-        fun create(manager: WifiP2pManager,  channel: WifiP2pManager.Channel,  fragment: Apps):WiFiDirectBroadcastReceiver
+        fun create(manager: WifiP2pManager,  channel: WifiP2pManager.Channel,  fragment: com.tarlochan.inshareapp.SendFragment):WiFiDirectBroadcastReceiver
         {
             if(obj==null)
                 obj = WiFiDirectBroadcastReceiver(manager, channel, fragment)
@@ -95,6 +95,7 @@ class WiFiDirectBroadcastReceiver() : BroadcastReceiver(), Parcelable {
             }
             WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION -> {}
             WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION -> {}
+
 
         }
 
