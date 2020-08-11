@@ -26,13 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
-            <ImageButton
-                android:id="@+id/toolbarBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="220dp"
-                android:background="@color/colorPrimary"
-                android:src="@drawable/ic_double_arrow" />
+
         </Toolbar>
 
         <TextView
@@ -94,6 +88,15 @@
                 app:fab_colorPressed="@color/material_on_primary_emphasis_medium"
                 app:fab_icon="@drawable/ic_media"
                 app:fab_title="Add Media" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="mini"
+                app:fab_colorNormal="@color/white"
+                app:fab_colorPressed="@color/material_on_primary_emphasis_medium"
+                app:fab_icon="@drawable/ic_send"
+                app:fab_title="Send Files" />
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

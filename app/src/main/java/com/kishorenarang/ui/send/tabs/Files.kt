@@ -1,15 +1,11 @@
 package com.kishorenarang.ui.send.tabs
 
-import android.app.Activity
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -22,6 +18,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton
 import com.kishorenarang.adapters.FilesAdapter
 import com.kishorenarang.api.FileItem
 import com.tarlochan.inshareapp.R
+import com.tarlochan.inshareapp.TransferActivity
 import kotlinx.android.synthetic.main.fragment_files.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -50,6 +47,7 @@ class Files : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -69,10 +67,13 @@ class Files : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter!!.notifyDataSetChanged()
 
-        val toolBarButton: ImageButton = root.findViewById(R.id.toolbarBtn)
-        toolBarButton.setOnClickListener(View.OnClickListener {
-            Toast.makeText(context,"Tool Bar Button Clicked ",Toast.LENGTH_SHORT).show()
+        val fabSend:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabSend)
+        fabSend.setOnClickListener(View.OnClickListener {
+            Toast.makeText(context,"Send Button Clicked ",Toast.LENGTH_SHORT).show()
+
+            //FilesList -> Transfer to Tranfer Activity or Tranfer Fragment
         })
+
 
         val fabAddFiles:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabAddFiles)
         fabAddFiles.setOnClickListener(View.OnClickListener {

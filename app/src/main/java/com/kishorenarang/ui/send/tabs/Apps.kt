@@ -58,7 +58,7 @@ class Apps(val navController: NavController) : Fragment() {
 
         val toolBarButton:ImageButton = root.findViewById(R.id.toolbarBtn)
         toolBarButton.setOnClickListener(View.OnClickListener {
-            Toast.makeText(context,"Pressed Check LogCat",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"-->Pressed Check LogCat",Toast.LENGTH_SHORT).show()
             Log.d("--> Array Adapter: ",adapter.checkBoxStateArray.toString())
             val list = arrayListOf<App>()
             list.clear()

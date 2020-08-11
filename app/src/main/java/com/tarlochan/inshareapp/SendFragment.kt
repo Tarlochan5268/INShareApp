@@ -1,10 +1,7 @@
 package com.tarlochan.inshareapp
 
 import android.Manifest
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.net.wifi.p2p.WifiP2pDevice
@@ -25,12 +22,14 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.kishorenarang.api.WiFiDirectBroadcastReceiver
+import com.tarlochan.inshareapp.ui.Constants
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private lateinit var runnable:Runnable
 
+lateinit var prefff: SharedPreferences
 /**
  * A simple [Fragment] subclass.
  * Use the [SendFragment.newInstance] factory method to
@@ -90,6 +89,14 @@ class SendFragment : Fragment() {
         val im4: ImageView =  root.findViewById<ImageView>(R.id.im4)
         val im5: ImageView =  root.findViewById<ImageView>(R.id.im5)
         val im6: ImageView =  root.findViewById<ImageView>(R.id.im6)
+
+        val imAvatar: ImageView = root.findViewById(R.id.imageViewAvatarSend)
+
+        prefff = requireContext().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        val id = requireContext().resources.getIdentifier(
+            prefff.getString(
+                Constants.IMG_AVATAR,"boy")!!, "drawable", requireContext().packageName)
+        imAvatar.setImageResource(id)
 
         val handler: Handler = Handler()
         runnable = Runnable {

@@ -17,7 +17,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.tarlochan.inshareapp.R
-import com.tarlochan.inshareapp.imgSelected
 import com.tarlochan.inshareapp.ui.Constants
 
 lateinit var pref: SharedPreferences
@@ -28,7 +27,7 @@ class ProfileFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
-        val imgAvatar: ImageView = root.findViewById(R.id.imageView2)
+        val imgAvatar: ImageView = root.findViewById(R.id.imageViewAvatarSend)
         val tvUserName: TextView = root.findViewById(R.id.tvUserName)
         pref = requireContext().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
         tvUserName.setText(pref.getString(Constants.USER_NAME,"Username")).toString()

@@ -3,30 +3,22 @@ package com.tarlochan.inshareapp
 import android.Manifest
 import android.content.Context
 import android.content.IntentFilter
-import android.content.pm.PackageManager
-import android.net.wifi.WifiManager
-import android.net.wifi.p2p.WifiP2pDevice
-import android.net.wifi.p2p.WifiP2pDeviceList
-import android.net.wifi.p2p.WifiP2pManager
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import com.kishorenarang.api.WiFiDirectBroadcastReceiver
+import com.tarlochan.inshareapp.ui.Constants
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private lateinit var runnable:Runnable
-
+lateinit var preff: SharedPreferences
 /**
  * A simple [Fragment] subclass.
  * Use the [ReceiveFragment.newInstance] factory method to
@@ -45,36 +37,20 @@ class ReceiveFragment : Fragment() {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val root =  inflater.inflate(R.layout.fragment_receive, container, false)
+
+        val imAvatar: ImageView = root.findViewById(R.id.imageViewAvatarSend)
+
+        preff = requireContext().getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        val id = requireContext().resources.getIdentifier(
+            preff.getString(
+                Constants.IMG_AVATAR,"boy")!!, "drawable", requireContext().packageName)
+        imAvatar.setImageResource(id)
 
         val im1: ImageView =  root.findViewById<ImageView>(R.id.im1)
         val im2: ImageView =  root.findViewById<ImageView>(R.id.im2)
