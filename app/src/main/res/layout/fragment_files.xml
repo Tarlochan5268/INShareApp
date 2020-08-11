@@ -26,7 +26,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
-
+            <ImageButton
+                android:id="@+id/toolbarBtnSendToTransferFragment"
+                android:layout_marginLeft="220dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_double_arrow" />
         </Toolbar>
 
         <TextView

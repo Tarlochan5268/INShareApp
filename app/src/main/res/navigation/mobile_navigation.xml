@@ -73,10 +73,18 @@
         <action
             android:id="@+id/action_files_to_sendFragment2"
             app:destination="@id/sendFragment2" />
+        <action
+            android:id="@+id/action_files_to_transferFragment"
+            app:destination="@id/transferFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendFragment2"
         android:name="com.tarlochan.inshareapp.SendFragment"
         android:label="SendFragment"
         tools:layout="@layout/send_fragment"/>
+    <fragment
+        android:id="@+id/transferFragment"
+        android:name="com.tarlochan.inshareapp.TransferFragment"
+        android:label="fragment_transfer"
+        tools:layout="@layout/fragment_transfer" />
 </navigation>

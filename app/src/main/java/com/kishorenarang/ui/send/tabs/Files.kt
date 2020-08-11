@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidbuffer.kotlinfilepicker.KotConstants
@@ -54,6 +55,18 @@ class Files : Fragment() {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        toolbarBtnSendToTransferFragment.setOnClickListener(View.OnClickListener {
+
+            val navController = Navigation.findNavController(view)
+            Toast.makeText(requireContext(), "Files being sent to connected device",Toast.LENGTH_SHORT).show()
+
+
+        })
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,6 +83,8 @@ class Files : Fragment() {
         val fabSend:FloatingActionButton = root.findViewById<FloatingActionButton>(R.id.fabSend)
         fabSend.setOnClickListener(View.OnClickListener {
             Toast.makeText(context,"Send Button Clicked ",Toast.LENGTH_SHORT).show()
+
+            val navController = Navigation.findNavController(requireView())
 
             //FilesList -> Transfer to Tranfer Activity or Tranfer Fragment
         })
