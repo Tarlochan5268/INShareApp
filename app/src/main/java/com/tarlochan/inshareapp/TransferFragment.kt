@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.kishorenarang.api.FileItem
+import com.kishorenarang.api.FileItems
 import java.util.ArrayList
 
 
@@ -50,6 +53,17 @@ class TransferFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_transfer, container, false)
     }
 
+    private  val TAG = "TransferFragment"
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val list = TransferFragmentArgs.fromBundle(requireArguments()).listOfFiles
+
+        Log.d(TAG, "onViewCreated: "+list)
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

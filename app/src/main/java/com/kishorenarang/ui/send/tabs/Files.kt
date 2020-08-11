@@ -18,6 +18,8 @@ import com.androidbuffer.kotlinfilepicker.KotResult
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.kishorenarang.adapters.FilesAdapter
 import com.kishorenarang.api.FileItem
+import com.kishorenarang.api.FileItems
+import com.kishorenarang.ui.send.SendFragmentDirections
 import com.tarlochan.inshareapp.R
 import com.tarlochan.inshareapp.TransferActivity
 import kotlinx.android.synthetic.main.fragment_files.*
@@ -43,7 +45,7 @@ class Files : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private val FilesList = arrayListOf<FileItem>()
+    private val FilesList = FileItems()
     private var adapter:FilesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +86,14 @@ class Files : Fragment() {
         fabSend.setOnClickListener(View.OnClickListener {
             Toast.makeText(context,"Send Button Clicked ",Toast.LENGTH_SHORT).show()
 
+
+
             val navController = Navigation.findNavController(requireView())
+
+
+           val action = SendFragmentDirections.actionSendFragmentToTransferFragment(FilesList as FileItems)
+
+            navController.navigate(action)
 
             //FilesList -> Transfer to Tranfer Activity or Tranfer Fragment
         })
@@ -133,11 +142,11 @@ class Files : Fragment() {
                     {
                         if(requestCode == REQUEST_FILE)
                         {
-                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_file,requireContext().theme),formatLocation(e.uri.toString()),simplifySize(cursor.getLong(sizeIndex).toString())))
+                            FilesList.add(FileItem(cursor.getString(nameIndex),R.drawable.ic_file,formatLocation(e.uri.toString()),simplifySize(cursor.getLong(sizeIndex).toString())))
                         }
                         else
                         {
-                            FilesList.add(FileItem(cursor.getString(nameIndex),requireContext().resources.getDrawable(R.drawable.ic_media_file,requireContext().theme),formatLocation(e.uri.toString()),simplifySize(cursor.getLong(sizeIndex).toString())))
+                            FilesList.add(FileItem(cursor.getString(nameIndex),R.drawable.ic_media_file,formatLocation(e.uri.toString()),simplifySize(cursor.getLong(sizeIndex).toString())))
                         }
 
                     }

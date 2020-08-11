@@ -51,6 +51,13 @@
         <action
             android:id="@+id/action_sendFragment_to_sendFragment2"
             app:destination="@id/sendFragment2" />
+        <action
+            android:id="@+id/action_sendFragment_to_transferFragment"
+            app:destination="@id/transferFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/receiveFragment"
@@ -75,7 +82,8 @@
             app:destination="@id/sendFragment2" />
         <action
             android:id="@+id/action_files_to_transferFragment"
-            app:destination="@id/transferFragment" />
+            app:destination="@id/transferFragment"
+           />
     </fragment>
     <fragment
         android:id="@+id/sendFragment2"
@@ -86,5 +94,9 @@
         android:id="@+id/transferFragment"
         android:name="com.tarlochan.inshareapp.TransferFragment"
         android:label="fragment_transfer"
-        tools:layout="@layout/fragment_transfer" />
+        tools:layout="@layout/fragment_transfer" >
+        <argument
+            android:name="listOfFiles"
+            app:argType="com.kishorenarang.api.FileItems" />
+    </fragment>
 </navigation>

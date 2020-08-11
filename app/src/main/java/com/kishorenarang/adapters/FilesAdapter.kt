@@ -54,7 +54,7 @@ class FilesAdapter(val filesList:List<FileItem>, val context: Context?): Seriali
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.fileIcon.setImageDrawable(filesList[position].icon)
+        holder.fileIcon.setImageDrawable(context!!.getDrawable(filesList[position].icon))
         holder.fileName.text = filesList[position].name
         holder.fileLocation.text = filesList[position].location
         holder.fileSize.text = filesList[position].size
