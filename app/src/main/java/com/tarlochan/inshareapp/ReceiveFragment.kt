@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.FragmentTransaction
 import com.tarlochan.inshareapp.ui.Constants
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,6 +52,12 @@ class ReceiveFragment : Fragment() {
             preff.getString(
                 Constants.IMG_AVATAR,"boy")!!, "drawable", requireContext().packageName)
         imAvatar.setImageResource(id)
+        imAvatar.setOnClickListener(View.OnClickListener {
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.nav_host_fragment, GetFragment())
+            transaction.addToBackStack(null)
+            transaction.commit()
+        })
 
         val im1: ImageView =  root.findViewById<ImageView>(R.id.im1)
         val im2: ImageView =  root.findViewById<ImageView>(R.id.im2)

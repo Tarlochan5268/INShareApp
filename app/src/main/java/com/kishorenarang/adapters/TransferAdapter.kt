@@ -16,7 +16,7 @@ import com.kishorenarang.api.TransferItem
 import com.tarlochan.inshareapp.R
 import java.io.Serializable
 
-class TransferAdapter(private val transferList:List<TransferItem>, val context: Context?): Serializable,RecyclerView.Adapter<TransferAdapter.ViewHolder>() {
+class TransferAdapter(private val transferList: ArrayList<TransferItem>, val context: Context?): Serializable,RecyclerView.Adapter<TransferAdapter.ViewHolder>() {
 
     //var checkBoxStateArray = SparseBooleanArray()
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view)
