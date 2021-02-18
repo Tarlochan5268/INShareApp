@@ -1,5 +1,5 @@
 # INShareApp
- This is Android InShare App Project made for Lambton College .
+ This is Android InShare App Project made entirely using kotlin for Lambton College .
  
  # Features
  - Uses News API to Get your favorite news into the App .
